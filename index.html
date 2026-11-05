@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Xumeng Zhang | Business Analytics</title>
+  <meta name="description" content="Xumeng Zhang: MS in Business Analytics candidate at Columbia University. Data analytics, machine learning, and AI evaluation.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --columbia: #B9D9EB;
+      --columbia-soft: #E6F1F8;
+      --navy: #1D4F91;
+      --navy-deep: #0C2340;
+      --text: #1F2A37;
+      --muted: #4B5A6B;
+      --surface: #FFFFFF;
+      --bg: #F7FAFC;
+      --border: #D6E4EE;
+      --radius: 12px;
+      --shadow: 0 1px 2px rgba(12,35,64,.06), 0 4px 16px rgba(12,35,64,.06);
+      --nav-h: 60px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + 16px); }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 16px; line-height: 1.6;
+    }
+    a { color: var(--navy); }
+    a:focus-visible, button:focus-visible { outline: 3px solid var(--navy); outline-offset: 2px; border-radius: 4px; }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+
+    /* Nav */
+    .nav {
+      position: sticky; top: 0; z-index: 10; height: var(--nav-h);
+      background: rgba(255,255,255,.92); backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 100%; gap: 16px; }
+    .brand { font-weight: 700; color: var(--navy-deep); text-decoration: none; letter-spacing: .02em; white-space: nowrap; }
+    .nav ul { list-style: none; display: flex; gap: 4px; margin: 0; padding: 0; overflow-x: auto; scrollbar-width: none; }
+    .nav ul::-webkit-scrollbar { display: none; }
+    .nav ul a {
+      display: block; padding: 6px 12px; border-radius: 999px; text-decoration: none;
+      color: var(--muted); font-size: 14px; font-weight: 500; white-space: nowrap;
+    }
+    .nav ul a:hover { color: var(--navy-deep); background: var(--columbia-soft); }
+    .nav ul a.active { color: var(--navy-deep); background: var(--columbia); }
+
+    /* Hero */
+    .hero { background: linear-gradient(180deg, var(--columbia) 0%, var(--columbia-soft) 100%); padding: 72px 0 56px; }
+    .hero h1 { margin: 0; font-size: clamp(34px, 6vw, 52px); color: var(--navy-deep); letter-spacing: -.02em; line-height: 1.1; }
+    .hero p.lead { margin: 12px 0 0; font-size: clamp(17px, 2.4vw, 20px); color: var(--navy-deep); max-width: 680px; }
+    .contact { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 8px;
+      font-weight: 600; font-size: 15px; text-decoration: none; border: 1px solid var(--navy);
+    }
+    .btn.primary { background: var(--navy); color: #fff; }
+    .btn.primary:hover { background: var(--navy-deep); border-color: var(--navy-deep); }
+    .btn.ghost { background: #fff; color: var(--navy); }
+    .btn.ghost:hover { background: var(--columbia-soft); }
+    .btn svg { width: 18px; height: 18px; fill: currentColor; }
+
+    /* Section jump tiles */
+    .jump { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-top: 36px; }
+    .jump a {
+      background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px;
+      text-decoration: none; color: var(--navy-deep); box-shadow: var(--shadow); transition: transform .15s, border-color .15s;
+    }
+    .jump a:hover { transform: translateY(-2px); border-color: var(--navy); }
+    .jump .n { display: block; font-size: 12px; font-weight: 600; color: var(--navy); letter-spacing: .08em; }
+    .jump .t { display: block; font-weight: 600; margin-top: 2px; }
+    .jump .s { display: block; font-size: 13px; color: var(--muted); }
+
+    /* Sections */
+    section { padding: 56px 0 8px; }
+    section:last-of-type { padding-bottom: 64px; }
+    .section-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 20px; border-bottom: 2px solid var(--columbia); padding-bottom: 8px; }
+    .section-head h2 { margin: 0; font-size: 24px; color: var(--navy-deep); letter-spacing: -.01em; }
+    .section-head .n { font-size: 13px; font-weight: 700; color: var(--navy); letter-spacing: .08em; }
+
+    .grid { display: grid; gap: 16px; }
+    .grid.two { grid-template-columns: repeat(2, 1fr); }
+    .card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 22px 24px; box-shadow: var(--shadow); border-top: 4px solid var(--columbia);
+    }
+    .card header { display: flex; justify-content: space-between; gap: 8px 16px; flex-wrap: wrap; }
+    .card h3 { margin: 0; font-size: 18px; color: var(--navy-deep); }
+    .card .role { margin: 2px 0 0; font-weight: 600; color: var(--navy); }
+    .meta { text-align: right; font-size: 14px; color: var(--muted); }
+    .meta .date { display: block; font-weight: 600; color: var(--navy-deep); }
+    .card ul { margin: 14px 0 0; padding-left: 20px; }
+    .card li { margin: 6px 0; }
+    .courses { margin: 12px 0 0; font-size: 15px; color: var(--muted); }
+    .courses strong { color: var(--text); font-weight: 600; }
+    .gpa { display: inline-block; margin-left: 6px; font-size: 13px; font-weight: 600; color: var(--navy-deep); background: var(--columbia-soft); padding: 1px 8px; border-radius: 999px; }
+
+    .skills .card h3 { font-size: 16px; margin-bottom: 12px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0 !important; margin: 0 !important; }
+    .chips li { margin: 0 !important; background: var(--columbia-soft); color: var(--navy-deep); border: 1px solid var(--border); padding: 4px 12px; border-radius: 999px; font-size: 14px; font-weight: 500; }
+
+    footer { background: var(--navy-deep); color: #D6E4EE; padding: 28px 0; font-size: 14px; }
+    footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    footer a { color: var(--columbia); }
+
+    @media (max-width: 860px) {
+      .jump { grid-template-columns: repeat(2, 1fr); }
+      .grid.two { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px) {
+      .brand { display: none; }
+      .hero { padding: 48px 0 40px; }
+      .card { padding: 18px; }
+      .meta { text-align: left; }
+      .card header { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav" aria-label="Primary">
+    <div class="wrap">
+      <a class="brand" href="#top">Xumeng Zhang</a>
+      <ul>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#volunteer">Volunteer</a></li>
+        <li><a href="#skills">Skills</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="wrap">
+      <h1>Xumeng Zhang</h1>
+      <p class="lead">MS in Business Analytics candidate at Columbia University. Data analysis, machine learning, and LLM evaluation across tech, banking, and healthcare.</p>
+      <div class="contact">
+        <a class="btn primary" href="mailto:xz3456@columbia.edu">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4.2-8 5-8-5V6l8 5 8-5v2.2z"/></svg>
+          xz3456@columbia.edu
+        </a>
+        <a class="btn ghost" href="https://www.linkedin.com/in/xumeng-zhang1/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+          LinkedIn
+        </a>
+        <a class="btn ghost" href="https://github.com/naomiz1" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4 18.3 4.3 18.3 4.3c.7 1.6.2 2.8.1 3.2.8.8 1.3 1.9 1.3 3.1 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
+          GitHub
+        </a>
+      </div>
+
+      <div class="jump" aria-label="Sections">
+        <a href="#education"><span class="n">01</span><span class="t">Education</span><span class="s">Columbia · UW-Madison</span></a>
+        <a href="#experience"><span class="n">02</span><span class="t">Experience</span><span class="s">Tencent · ICBC · Gaorui</span></a>
+        <a href="#projects"><span class="n">03</span><span class="t">Projects</span><span class="s">FDNY · Ask2.ai</span></a>
+        <a href="#volunteer"><span class="n">04</span><span class="t">Volunteer</span><span class="s">Math tutoring</span></a>
+        <a href="#skills"><span class="n">05</span><span class="t">Skills</span><span class="s">Python · SQL · ML · AI</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- 01 Education -->
+    <section id="education" aria-labelledby="h-education">
+      <div class="section-head"><span class="n">01</span><h2 id="h-education">Education</h2></div>
+      <div class="grid two">
+        <article class="card">
+          <header>
+            <div>
+              <h3>Columbia University</h3>
+              <p class="role">MS in Business Analytics <span class="gpa">GPA 3.7/4.0</span></p>
+            </div>
+            <div class="meta"><span class="date">Expected Dec 2026</span>New York, NY</div>
+          </header>
+          <p class="courses"><strong>Courses:</strong> Data Analytics, A/B Testing, Marketing Analytics, Optimization, Machine Learning</p>
+        </article>
+        <article class="card">
+          <header>
+            <div>
+              <h3>University of Wisconsin-Madison</h3>
+              <p class="role">BS in Data Science and Economics <span class="gpa">GPA 3.9/4.0</span></p>
+            </div>
+            <div class="meta"><span class="date">Sep 2022 - May 2025</span>Madison, WI</div>
+          </header>
+          <p class="courses"><strong>Courses:</strong> Python, Pandas, NumPy, R, SQL, Machine Learning, Econometrics</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 02 Work Experience -->
+    <section id="experience" aria-labelledby="h-experience">
+      <div class="section-head"><span class="n">02</span><h2 id="h-experience">Work Experience</h2></div>
+      <div class="grid">
+        <article class="card">
+          <header>
+            <div>
+              <h3>Tencent Holdings Limited (CSIG)</h3>
+              <p class="role">Business Analysis Intern, Industry Operations Center</p>
+            </div>
+            <div class="meta"><span class="date">May 2026 - Aug 2026</span>Shenzhen, China</div>
+          </header>
+          <ul>
+            <li>Rebuilt multi-cloud competitor revenue data into a five-layer star schema with a 60K+ row fact table; designed unique keys and reconciled duplicate and inconsistent reporting logic.</li>
+            <li>Migrated the dashboard to a traceable production warehouse covering 3,930 customer groups with zero front-end or back-end changes; implemented row-level access controls and an MCP query interface.</li>
+            <li>Redesigned the sales-intelligence pipeline with on-demand tiering and code-first processing, projecting 83% monthly savings; independently built an LLM output evaluator and validated four production skills through 10 red-team rounds.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <header>
+            <div>
+              <h3>Industrial and Commercial Bank of China</h3>
+              <p class="role">Data Analysis Intern</p>
+            </div>
+            <div class="meta"><span class="date">Jun 2024 - Aug 2024</span>Nanjing, China</div>
+          </header>
+          <ul>
+            <li>Built a recurring customer-structure reporting workflow from large-scale transaction and behavioral data; automated cleaning, deduplication, and validation improved reporting consistency and shortened recurring analysis cycles.</li>
+            <li>Developed a SQL-based segmentation framework to surface high-risk and churn-prone customer groups, enabling campaign and risk teams to prioritize outreach based on customer behavior.</li>
+            <li>Applied random forest and collaborative filtering to customer records, translating model outputs into personalized product recommendations and actionable outreach lists.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <header>
+            <div>
+              <h3>Jiangsu Gaorui Pharmaceutical Co., Ltd</h3>
+              <p class="role">Marketing Data Analysis Intern</p>
+            </div>
+            <div class="meta"><span class="date">Jul 2023 - Aug 2023</span>Suzhou, China</div>
+          </header>
+          <ul>
+            <li>Engineered an integrated multi-channel sales and promotion data system with 200K+ records, enabling unified analytics for regional marketing teams across five cities.</li>
+            <li>Preprocessed datasets with Python and Excel, including missing-value imputation, outlier validation, and standardization, to produce analysis-ready data.</li>
+            <li>Validated 50K+ campaign records and delivered six market-trend reports, all of which passed internal audit review.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- 03 Projects -->
+    <section id="projects" aria-labelledby="h-projects">
+      <div class="section-head"><span class="n">03</span><h2 id="h-projects">Projects</h2></div>
+      <div class="grid two">
+        <article class="card">
+          <header>
+            <div>
+              <h3>Fire Department of New York</h3>
+              <p class="role">Operational Analytics &amp; Causal Modeling for EMS Performance</p>
+            </div>
+            <div class="meta"><span class="date">Jan 2026 - May 2026</span>New York, NY</div>
+          </header>
+          <ul>
+            <li>Analyzed 300K+ dispatch records and engineered 12 operational features, including ambulance availability and concurrent load, reducing prediction error by approximately 11% versus baseline.</li>
+            <li>Built borough-level arrival-time models using Random Forest and LightGBM and evaluated interventions with ARIMA, SARIMAX, and BSTS.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <header>
+            <div>
+              <h3>Ask2.ai</h3>
+              <p class="role">Graph-Based Fund Ranking System</p>
+            </div>
+            <div class="meta"><span class="date">Jan 2026 - May 2026</span>New York, NY</div>
+          </header>
+          <ul>
+            <li>Developed a rolling 30-day pipeline that modeled relationships across 500+ funds and generated dynamic rankings and portfolio weights.</li>
+            <li>Improved ranking consistency by 35% and reduced turnover by 28% through hyperparameter and graph-structure optimization; out-of-sample backtests increased annualized Sharpe ratio by 0.31 versus baseline.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- 04 Volunteer Experience -->
+    <section id="volunteer" aria-labelledby="h-volunteer">
+      <div class="section-head"><span class="n">04</span><h2 id="h-volunteer">Volunteer Experience</h2></div>
+      <article class="card">
+        <header>
+          <div>
+            <h3>University of Wisconsin Housing</h3>
+            <p class="role">University Housing Math Tutor</p>
+          </div>
+          <div class="meta"><span class="date">Aug 2024 - May 2025</span>Madison, WI</div>
+        </header>
+        <ul>
+          <li>Provided tutoring for 300+ undergraduate students and optimized scheduling with Residence Life staff, increasing attendance by 15% and positive feedback by 20%.</li>
+        </ul>
+      </article>
+    </section>
+
+    <!-- 05 Skills -->
+    <section id="skills" class="skills" aria-labelledby="h-skills">
+      <div class="section-head"><span class="n">05</span><h2 id="h-skills">Skills</h2></div>
+      <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+        <article class="card">
+          <h3>Programming &amp; Tools</h3>
+          <ul class="chips">
+            <li>Python (Pandas, NumPy, Scikit-learn)</li><li>SQL</li><li>R</li><li>Excel</li><li>Tableau</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Machine Learning</h3>
+          <ul class="chips">
+            <li>Logistic Regression</li><li>Decision Trees</li><li>Random Forest</li><li>LightGBM</li><li>XGBoost</li><li>Graph Models</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Analytics &amp; AI</h3>
+          <ul class="chips">
+            <li>A/B Testing</li><li>Customer Segmentation</li><li>Causal Inference</li><li>LLM-as-a-Judge</li><li>Prompt Engineering</li><li>FastAPI</li><li>ETL</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>&copy; 2026 Xumeng Zhang</span>
+      <span><a href="mailto:xz3456@columbia.edu">Email</a> · <a href="https://www.linkedin.com/in/xumeng-zhang1/" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://github.com/naomiz1" target="_blank" rel="noopener">GitHub</a></span>
+    </div>
+  </footer>
+
+  <script>
+    // Highlight the nav link for the section currently in view (progressive enhancement).
+    (function () {
+      var links = document.querySelectorAll('.nav ul a');
+      if (!('IntersectionObserver' in window)) return;
+      var map = {};
+      links.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
+      var obs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            links.forEach(function (a) { a.classList.remove('active'); });
+            var a = map[e.target.id];
+            if (a) {
+              a.classList.add('active');
+              // Keep the active link visible in the horizontally scrolling nav
+              // without scrolling the page itself (scrollIntoView on a sticky
+              // element jumps the page back to the top).
+              var ul = a.parentNode.parentNode;
+              var left = a.offsetLeft, right = left + a.offsetWidth;
+              if (left < ul.scrollLeft) ul.scrollLeft = left;
+              else if (right > ul.scrollLeft + ul.clientWidth) ul.scrollLeft = right - ul.clientWidth;
+            }
+          }
+        });
+      }, { rootMargin: '-40% 0px -55% 0px' });
+      document.querySelectorAll('main section').forEach(function (s) { obs.observe(s); });
+    })();
+  </script>
+</body>
+</html>

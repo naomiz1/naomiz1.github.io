@@ -1,0 +1,4 @@
+# Private files: never publish
+*.pdf
+.DS_Store
+.env
